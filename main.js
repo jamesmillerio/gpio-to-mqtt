@@ -1,5 +1,5 @@
 var gpio = require("pi-gpio"),
-    config = require(".config");
+    config = require("./config.json");
 
 if(config == null) { return; }
 
@@ -16,18 +16,20 @@ var openPin = function(pin) {
     if(err) { console.log("Error opening pin: " + err); }
 
     console.log(pin);
-    
+
   });
 
 };
 
 var configurePins = function(c) {
-  for(var i = 0; i < c.pins.length; i++) {
+  return new Promise();
+  /*for(var i = 0; i < c.pins.length; i++) {
 
     var pin = c.pins[i];
 
     openPin(pin);
-  }
+  }*/
+
 
 };
 

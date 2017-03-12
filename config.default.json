@@ -1,0 +1,10 @@
+{
+  "pollingIntervalMs": 500,
+  "mqtt": {
+    "broker": "127.0.0.1"
+  },
+  "pins": [{
+    "pin": 22,
+    "topic": "downstairs/nook/door"
+  }]
+}
