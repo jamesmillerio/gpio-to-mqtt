@@ -1,5 +1,5 @@
 var gpio = require("pi-gpio"),
-    promise = require("promise"),
+    Promise = require("promise"),
     config = require("./config.json");
 
 if(config == null || config.pins == null) { return; }
