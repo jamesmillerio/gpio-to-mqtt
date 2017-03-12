@@ -12,18 +12,38 @@ for(var i = 0; i < config.pins.length; i++) {
   var pin = config.pins[i];
 
   promises.push(new Promise(function(resolve, reject) {
-    gpio.open(pin.pin, null, function(err) {
 
-      if(err) { console.log("Error opening pin: " + err); }
+    //Close the pin just in case it's open from a previous session.
+    gpio.close(pin.pin);
 
-      resolve(pin)
+    //Open the pin.
+    gpio.open(pin.pin, "out", function(err) {
+
+      if(err) throw err;
+
+      resolve(pin);
 
     });
   }));
 
 }
 
-Promise.race(promises).then(function(pin) {
-  console.log("PIN!");
-  console.log(pin);
-})
+Promise.all(promises).then(function(pins) {
+
+  if(pins == null) return;
+
+  for(var i = 0; i < pins.length; i++) {
+
+    var pin = pins[i];
+
+    gpio.read(pin.pin, function(err, value) {
+
+      if(err) throw err;
+
+      console.log("Pin " + pin.pin + ": " + value);
+
+    })
+
+  }
+
+});
