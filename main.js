@@ -1,4 +1,4 @@
-var gpio = require("pi-gpio"),
+var gpio = require("rpi-gpio"),
     Promise = require("promise"),
     config = require("./config.json");
 
@@ -42,7 +42,17 @@ Promise.all(promises).then(function(pins) {
 
       console.log("Pin " + pin.pin + ": " + value);
 
-    })
+    });
+
+  }
+
+}).then(function(pins) {
+
+  for(var i = 0; i < pins.length; i++) {
+
+    var pin = pins[i];
+
+    gpio.close(pin.pin);
 
   }
 

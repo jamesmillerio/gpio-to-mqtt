@@ -6,7 +6,8 @@
   "dependencies": {
     "mqtt": "^2.4.0",
     "pi-gpio": "^0.0.8",
-    "promise": "^7.1.1"
+    "promise": "^7.1.1",
+    "rpi-gpio": "^0.7.0"
   },
   "devDependencies": {},
   "scripts": {
