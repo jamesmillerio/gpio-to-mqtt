@@ -77,6 +77,8 @@ exports = {
           return;
         }
 
+        data = data.toString();
+
         console.log(data);
 
         callback(null, data == "1");
