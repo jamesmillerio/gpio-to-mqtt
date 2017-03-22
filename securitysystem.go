@@ -87,6 +87,8 @@ func (s *SecuritySystem) BeginUpdating() {
 					prior := pin.Value
 					current := value == 1
 
+					fmt.Printf("Pin %v Value %v\n", pin.GPIOPin, current)
+
 					s.configuration.Pins[i].Value = current
 
 					if prior != current {
