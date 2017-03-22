@@ -11,22 +11,19 @@ import (
 //status changes out to the terminal.
 type MqttStatusReceiver struct {
 	configuration *Configuration
-	notifications chan Pin
 	mqttClient    *client.Client
 }
 
 //NewMqttStatusReceiver creates a new instance
 //of our terminal receiver, which writes status changes
 //out to the terminal.
-func NewMqttStatusReceiver(configuration *Configuration, notificationsChannel chan Pin) *MqttStatusReceiver {
+func NewMqttStatusReceiver(configuration *Configuration) *MqttStatusReceiver {
 
 	receiver := new(MqttStatusReceiver)
 
 	receiver.configuration = configuration
-	receiver.notifications = notificationsChannel
 
 	receiver.connectToMqttBroker()
-	receiver.listen()
 
 	return receiver
 }
@@ -61,19 +58,6 @@ func (m *MqttStatusReceiver) connectToMqttBroker() {
 			break
 		}
 	}
-}
-
-//listen begins listening for channel events.
-func (m *MqttStatusReceiver) listen() {
-	go func() {
-
-		for {
-
-			m.Notify(<-m.notifications)
-
-		}
-
-	}()
 }
 
 //Notify prints the status change to the terminal.

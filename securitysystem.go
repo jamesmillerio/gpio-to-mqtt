@@ -10,11 +10,10 @@ import (
 //SecuritySystem is the main entry point into interacting with
 //our Raspberry Pi and its associated monitored windows/doors.
 type SecuritySystem struct {
-	configuration       *Configuration
-	receivers           []IStatusReceiver
-	terminal            *TerminalStatusReceiver
-	mqtt                *MqttStatusReceiver
-	notificationChannel chan Pin
+	configuration *Configuration
+	receivers     []IStatusReceiver
+	terminal      *TerminalStatusReceiver
+	mqtt          *MqttStatusReceiver
 }
 
 //NewSecuritySystem initializes our security system and the Raspberry Pi.
@@ -22,10 +21,9 @@ func NewSecuritySystem(c *Configuration) *SecuritySystem {
 	s := new(SecuritySystem)
 
 	s.configuration = c
-	s.notificationChannel = make(chan Pin)
-	s.terminal = NewTerminalStatusReceiver(c, s.notificationChannel)
-	s.mqtt = NewMqttStatusReceiver(c, s.notificationChannel)
-	s.receivers = []IStatusReceiver{s.terminal}
+	s.terminal = NewTerminalStatusReceiver(c)
+	s.mqtt = NewMqttStatusReceiver(c)
+	s.receivers = []IStatusReceiver{s.terminal, s.mqtt}
 
 	return s
 }
@@ -89,7 +87,10 @@ func (s *SecuritySystem) BeginUpdating() {
 					s.configuration.Pins[i].Value = current
 
 					if prior != current {
-						s.notificationChannel <- s.configuration.Pins[i]
+						//We've had a change. Notify each receiver.
+						for _, receiver := range s.receivers {
+							receiver.Notify(s.configuration.Pins[i])
+						}
 					}
 
 				}
