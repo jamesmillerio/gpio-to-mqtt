@@ -100,16 +100,3 @@ func (s *SecuritySystem) BeginUpdating() {
 
 	}()
 }
-
-//switchStatusChanged is an event that is fired when a door/window opens.
-func (s *SecuritySystem) switchStatusChanged(p Pin) {
-
-	//Notify the Vera first.
-	//s.vera.TripDoorSwitch("DeviceNum", p.DeviceNum)
-
-	//Notify any status receivers.
-	for _, receiver := range s.receivers {
-		receiver.Notify(p)
-	}
-
-}

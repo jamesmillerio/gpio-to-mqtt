@@ -4,14 +4,19 @@ import (
 	"math"
 	"os"
 	"os/signal"
+	"sync"
 
 	"github.com/sasbury/logging"
 )
 
 var config *Configuration
 var securitySystem *SecuritySystem
+var waitGroup sync.WaitGroup
 
 func main() {
+
+	//COmnfigure our wait group
+	waitGroup.Add(1)
 
 	//Set up some logging
 	rollingFile := logging.NewRollingFileAppender("events", "log", math.MaxInt64, 1)
@@ -25,10 +30,12 @@ func main() {
 	//If the app closes by normal means, shut everything down.
 	defer securitySystem.Close()
 
+	handleInterrupts()
+
 	//notifications := securitySystem.BeginUpdating()
 	securitySystem.BeginUpdating()
 
-	handleInterrupts()
+	waitGroup.Wait()
 
 }
 
