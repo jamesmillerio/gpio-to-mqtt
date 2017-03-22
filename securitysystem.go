@@ -21,9 +21,7 @@ func NewSecuritySystem(c *Configuration) *SecuritySystem {
 	s := new(SecuritySystem)
 
 	s.configuration = c
-	s.terminal = NewTerminalStatusReceiver(c)
-	s.mqtt = NewMqttStatusReceiver(c)
-	s.receivers = []IStatusReceiver{s.terminal, s.mqtt}
+	s.receivers = []IStatusReceiver{}
 
 	return s
 }
@@ -34,6 +32,15 @@ func (s *SecuritySystem) GetCurrentSwitchValues() []Pin {
 
 	return s.configuration.Pins
 
+}
+
+func (s *SecuritySystem) AddReceiver(receiver IStatusReceiver) {
+
+	if receiver == nil {
+		return
+	}
+
+	s.receivers = append(s.receivers, receiver)
 }
 
 //Close disposes of our Raspberry Pi's resources.

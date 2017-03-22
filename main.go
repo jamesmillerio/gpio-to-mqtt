@@ -1,12 +1,9 @@
 package main
 
 import (
-	"math"
 	"os"
 	"os/signal"
 	"sync"
-
-	"github.com/sasbury/logging"
 )
 
 var config *Configuration
@@ -18,14 +15,13 @@ func main() {
 	//COmnfigure our wait group
 	waitGroup.Add(1)
 
-	//Set up some logging
-	rollingFile := logging.NewRollingFileAppender("events", "log", math.MaxInt64, 1)
-
 	config = NewSecurityConfiguration()
-
-	logging.AddAppender(rollingFile)
-
 	securitySystem = NewSecuritySystem(config)
+	terminalReceiver := NewTerminalStatusReceiver(config)
+	mqttReceiver := NewMqttStatusReceiver(config)
+
+	securitySystem.AddReceiver(terminalReceiver)
+	securitySystem.AddReceiver(mqttReceiver)
 
 	//If the app closes by normal means, shut everything down.
 	defer securitySystem.Close()

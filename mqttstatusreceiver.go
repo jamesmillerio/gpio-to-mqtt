@@ -64,8 +64,6 @@ func (m *MqttStatusReceiver) connectToMqttBroker() {
 //Notify prints the status change to the terminal.
 func (m *MqttStatusReceiver) Notify(pin Pin) {
 
-	fmt.Printf("MQTT Receiver: %v.\n", pin)
-
 	message := NewMqttMessage(pin.Value, pin.Name)
 
 	err := m.mqttClient.Publish(&client.PublishOptions{
@@ -79,33 +77,3 @@ func (m *MqttStatusReceiver) Notify(pin Pin) {
 	}
 
 }
-
-/*for {
-
-	pin := <-notifications
-
-	message := "ON"
-
-	if pin.Value {
-		message = "OFF"
-	}
-
-	topic := pin.Topic
-
-	if len(topic) <= 0 {
-		topic = strings.ToLower("home-assistant/window/contact/" + strings.Replace(pin.Name, " ", "-", -1))
-	}
-
-	fmt.Printf("Topic: %v\n", topic)
-
-	err := mqttClient.Publish(&client.PublishOptions{
-		QoS:       mqtt.QoS0,
-		TopicName: []byte(topic),
-		Message:   []byte(message),
-	})
-
-	if err != nil {
-		panic(err)
-	}
-
-}*/
