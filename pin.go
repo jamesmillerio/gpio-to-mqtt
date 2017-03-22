@@ -24,7 +24,7 @@ func (s *Pin) Configure() {
 	fmt.Printf("Configuring pin %v...\n", s)
 
 	//Set pin as an input pin.
-	s.Pin.Input()
+	s.Pin.Output()
 
 	//Set the pull of the pin.
 	if s.Pull {
