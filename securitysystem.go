@@ -86,6 +86,8 @@ func (s *SecuritySystem) BeginUpdating() {
 
 					s.configuration.Pins[i].Value = current
 
+					fmt.Printf("Pin %v current value: %v", pin.GPIOPin, current)
+
 					if prior != current {
 						//We've had a change. Notify each receiver.
 						for _, receiver := range s.receivers {
