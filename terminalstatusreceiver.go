@@ -23,6 +23,6 @@ func NewTerminalStatusReceiver(configuration *Configuration) *TerminalStatusRece
 //Notify prints the status change to the terminal.
 func (t *TerminalStatusReceiver) Notify(pin Pin) {
 
-	fmt.Printf("Terminal Receiver: %v.\n", pin)
+	fmt.Printf("Terminal Receiver: Pin: %v Value: %v\n", pin.GPIOPin, pin.Value)
 
 }
