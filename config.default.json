@@ -1,10 +1,11 @@
 {
-  "pollingIntervalMs": 500,
-  "mqtt": {
-    "broker": "127.0.0.1"
+  "PollingIntervalMs": 500,
+  "MQTT": {
+    "Broker": "127.0.0.1"
   },
-  "pins": [{
-    "pin": 22,
-    "topic": "downstairs/nook/door"
+  "Pins": [{
+    "GPIOPin": 22,
+    "Topic": "downstairs/nook/door",
+    "Pull": true
   }]
 }
