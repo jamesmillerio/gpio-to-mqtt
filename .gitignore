@@ -38,4 +38,5 @@ jspm_packages
 
 # Custom
 config.json
+.config
 gpio-to-mqtt
