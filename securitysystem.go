@@ -67,10 +67,13 @@ func (s *SecuritySystem) BeginUpdating() {
 			s.configuration.Pins[i].Pin.Input()
 
 			//Set the pull of the pin.
-			if pin.Pull {
+			switch pin.Pull {
+			case rpio.PullUp:
 				s.configuration.Pins[i].Pin.PullUp()
-			} else {
+			case rpio.PullDown:
 				s.configuration.Pins[i].Pin.PullDown()
+			case rpio.PullOff:
+				s.configuration.Pins[i].Pin.PullOff()
 			}
 
 		}
