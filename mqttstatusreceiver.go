@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/yosssi/gmq/mqtt"
 	"github.com/yosssi/gmq/mqtt/client"
 )
 
@@ -64,6 +65,18 @@ func (m *MqttStatusReceiver) connectToMqttBroker() {
 func (m *MqttStatusReceiver) Notify(pin Pin) {
 
 	fmt.Printf("MQTT Receiver: %v.\n", pin)
+
+	message := NewMqttMessage(pin.Value, pin.Name)
+
+	err := m.mqttClient.Publish(&client.PublishOptions{
+		QoS:       mqtt.QoS0,
+		TopicName: []byte(pin.Topic),
+		Message:   message.ToBytes(),
+	})
+
+	if err != nil {
+		panic(err)
+	}
 
 }
 
