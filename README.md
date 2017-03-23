@@ -58,3 +58,9 @@ You can define as many additional pins as your board supports by just adding to 
   - **Pull:** Whether to pull up (2), down (1), or off (0).
   - **Name:** A friendly name for the pin.
   - **Retain:** Whether the broker should retain state change messages.
+
+
+## To Do
+
+- [ ] Add more MQTT configuration options. We use the yosssi/gmq library for our MQTT needs and it provides a lot of options that aren't currently supported to gpio-to-mqtt.
+- [ ] Testing... This started out as a proof-of-concept so tests were foregone during that time. This needs to be rectified.
