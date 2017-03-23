@@ -10,6 +10,7 @@ type Pin struct {
 	Pull    rpio.Pull
 	Status  bool
 	Value   bool
+	Retain  bool
 	Name    string
 }
 

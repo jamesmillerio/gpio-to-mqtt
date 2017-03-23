@@ -70,6 +70,7 @@ func (m *MqttStatusReceiver) Notify(pin Pin) {
 		QoS:       mqtt.QoS0,
 		TopicName: []byte(pin.Topic),
 		Message:   message.ToBytes(),
+		Retain:    pin.Retain,
 	})
 
 	if err != nil {
