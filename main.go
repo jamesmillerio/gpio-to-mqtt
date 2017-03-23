@@ -15,7 +15,13 @@ func main() {
 	//COmnfigure our wait group
 	waitGroup.Add(1)
 
-	config = NewSecurityConfiguration()
+	configLocation := "./.config"
+
+	if len(os.Args) > 1 {
+		configLocation = os.Args[1]
+	}
+
+	config = NewSecurityConfiguration(configLocation)
 	securitySystem = NewSecuritySystem(config)
 	terminalReceiver := NewTerminalStatusReceiver(config)
 	mqttReceiver := NewMqttStatusReceiver(config)

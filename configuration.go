@@ -17,8 +17,8 @@ type Configuration struct {
 
 //NewSecurityConfiguration returns the settings from
 //the settings file ./.jarvis in the root of the project.
-func NewSecurityConfiguration() *Configuration {
-	return NewSecurityConfigurationFromFile("./.config")
+func NewSecurityConfiguration(path string) *Configuration {
+	return NewSecurityConfigurationFromFile(path)
 }
 
 //NewSecurityConfigurationFromFile loads the specified settings
