@@ -16,7 +16,7 @@ That should get you running with Go. Then you will need to configure your Go env
 
 Once that’s done, you can clone the repo into your source directory and run:
 
-> go get
+> go get  
 > go install
 
 This will get the dependencies and install in your bin directory. Now you need a configuration file.
