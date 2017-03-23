@@ -62,5 +62,5 @@ You can define as many additional pins as your board supports by just adding to 
 
 ## To Do
 
-- [ ] Add more MQTT configuration options. We use the yosssi/gmq library for our MQTT needs and it provides a lot of options that aren't currently supported to gpio-to-mqtt.
+- [ ] Add more MQTT configuration options. We use the [yosssi/gmq](https://github.com/yosssi/gmq) library for our MQTT needs and it provides a lot of options that aren't currently supported to gpio-to-mqtt.
 - [ ] Testing... This started out as a proof-of-concept so tests were foregone during that time. This needs to be rectified.
