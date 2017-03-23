@@ -67,7 +67,7 @@ There are two main ways to extend this project for your needs. The first and mos
 However, if you'd like to extend gpio-to-mqtt for your own needs, you can do so by implementing a struct that implements IStatusReceiver. It is a very simple interface with one required method:
 
 > type IStatusReceiver interface {  
-> 	Notify(pin Pin)  
+> 		Notify(pin Pin)  
 > }  
 
 Notify is called when a pin changes states. After implementing your struct, you can register it in the main.go file by calling the .AddReceiver() method of the SecuritySystem struct. This can be done after the Terminal and MQTT status receiver are registered. That should be all there is to it.
