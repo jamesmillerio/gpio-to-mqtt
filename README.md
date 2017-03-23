@@ -29,19 +29,30 @@ Options within this file include:
 
 ```json
 {
-  "PollingIntervalMs": 500, 	      //How often (in ms) to poll the GPIO pins for state changes.
+  "PollingIntervalMs": 500,
   "MQTT": {
-    "Broker": "127.0.0.1”,		      //The MQTT broker host address.
-    “Port”: 1883, 				          //The MQTT broker host port.
+    "Broker": "127.0.0.1”,
+    “Port”: 1883,
  },
- "Pins": [{ 					              //An array of GPIO pins to monitor.
-   "GPIOPin": 22,			              //The GPIO pin number, NOT the BCM pin.
-   "Topic": "downstairs/frontdoor",	//The topic to publish to on a state change.
-   "Pull": 2,					              //Whether to pull up (2), down (1), or off (0).
-   "Name": "Front Door",		        //A friendly name for the pin.
-   "Retain": true				            //Whether the MQTT broker should retain the messages.
+ "Pins": [{
+   "GPIOPin": 22,
+   "Topic": "downstairs/frontdoor",
+   "Pull": 2,					              //
+   "Name": "Front Door",
+   "Retain": true
  }]
 }
 ```
 
 You can define as many additional pins as your board supports by just adding to the pins array in the configuration file.
+
+### Configuration Options
+
+*PollingIntervalMs:* The frequency with which to check for pin state changes in milliseconds.
+*MQTT.Broker:* The MQTT broker host name or ip.
+*MQTT.Port:* The MQTT broker listening port.
+*Pins[].GPIOPin:* The GPIO pin number to monitor (NOT the BCM pin number).
+*Pins[].Topic:* The topic to broadcast the state change message to.
+*Pins[].Pull:* Whether to pull up (2), down (1), or off (0).
+*Pins[].Name:* A friendly name for the pin.
+*Pins[].Retain:* Whether the broker should retain state change messages.
