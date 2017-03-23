@@ -4,7 +4,7 @@
 
 A simple project for translating changes to Raspberry Pi GPIO pins to MQTT messages written in Go.
 
-This project can be handy for anything where a GPIO pin will be turned on/off and you’d like to notify listeners on your network of the change. A good example is wiring a Raspberry Pi up to door and window switches from an old alarm system to notify listeners on your network of changes. Someone opens or closes a window? You’ll get an MQTT message.
+This project can be handy for anything where a GPIO pin will be turned on/off and you’d like to notify listeners on your network of the change. A good example is wiring a Raspberry Pi up to door and window switches from an old alarm system to notify listeners on your network of changes. Someone opens or closes a door/window? You’ll get an MQTT message when it opens and another when it closes.
 
 ## Getting Started
 
@@ -12,7 +12,7 @@ This project is written in Go so you’ll need to install go on your Raspberry P
 
 > sudo apt-get install golang
 
-That should get your running with Go. Then you will need to configure your Go environment by creating your Go directories and setting your $GOPATH.
+That should get you running with Go. Then you will need to configure your Go environment by creating your Go directories and setting your $GOPATH.
 
 Once that’s done, you can clone the repo into your source directory and run:
 
