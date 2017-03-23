@@ -8,7 +8,7 @@ This project can be handy for anything where a GPIO pin will be turned on/off an
 
 ## Getting Started
 
-This project is written in Go so you’ll need to install go on your Raspberry Pi by running:
+This project is written in Go so you’ll need to install Go on your Raspberry Pi by running:
 
 > sudo apt-get install golang
 
