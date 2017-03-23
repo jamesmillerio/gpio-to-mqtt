@@ -1,6 +1,6 @@
 # gpio-to-mqtt
 
-![Golang](./assets/golang.png  =100x100) ![Raspberry Pi](./assets/raspberrypi.png =100x100) ![MQTT](./assets/mqtt.png  =100x100)
+![Golang](./assets/golang.png) ![Raspberry Pi](./assets/raspberrypi.png) ![MQTT](./assets/mqtt.png)
 
 A simple project for translating changes to Raspberry Pi GPIO pins to MQTT messages written in Go.
 
