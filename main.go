@@ -26,8 +26,11 @@ func main() {
 	terminalReceiver := NewTerminalStatusReceiver(config)
 	mqttReceiver := NewMqttStatusReceiver(config)
 
+	//Add our status receivers here.
 	securitySystem.AddReceiver(terminalReceiver)
 	securitySystem.AddReceiver(mqttReceiver)
+
+	//Add any custom status receiver here.
 
 	//If the app closes by normal means, shut everything down.
 	defer securitySystem.Close()
