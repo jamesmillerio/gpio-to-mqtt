@@ -49,10 +49,12 @@ You can define as many additional pins as your board supports by just adding to 
 ### Configuration Options
 
 - **PollingIntervalMs:** The frequency with which to check for pin state changes in milliseconds.
-- **MQTT.Broker:** The MQTT broker host name or ip.
-- **MQTT.Port:** The MQTT broker listening port.
-- **Pins[].GPIOPin:** The GPIO pin number to monitor (NOT the BCM pin number).
-- **Pins[].Topic:** The topic to broadcast the state change message to.
-- **Pins[].Pull:** Whether to pull up (2), down (1), or off (0).
-- **Pins[].Name:** A friendly name for the pin.
-- **Pins[].Retain:** Whether the broker should retain state change messages.
+- **MQTT**
+  - **Broker:** The MQTT broker host name or ip.
+  - **Port:** The MQTT broker listening port.
+- **Pins**
+  - **GPIOPin:** The GPIO pin number to monitor (NOT the BCM pin number).
+  - **Topic:** The topic to broadcast the state change message to.
+  - **Pull:** Whether to pull up (2), down (1), or off (0).
+  - **Name:** A friendly name for the pin.
+  - **Retain:** Whether the broker should retain state change messages.
