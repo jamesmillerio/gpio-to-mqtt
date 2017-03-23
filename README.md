@@ -32,7 +32,7 @@ Options within this file include:
   "PollingIntervalMs": 500,
   "MQTT": {
     "Broker": "127.0.0.1",
-    “Port”: 1883
+    "Port": 1883
   },
  "Pins": [{
    "GPIOPin": 22,
