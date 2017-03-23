@@ -1,12 +1,13 @@
 {
   "PollingIntervalMs": 500,
   "MQTT": {
-    "Broker": "127.0.0.1"
+    "Broker": "127.0.0.1",
+    "Port": 1883
   },
   "Pins": [{
     "GPIOPin": 22,
     "Topic": "downstairs/nook/door",
-    "Pull": true,
+    "Pull": 2,
     "Name": "Nook Door",
     "Retain": true
   }]

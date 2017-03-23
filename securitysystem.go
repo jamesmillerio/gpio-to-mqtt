@@ -34,6 +34,7 @@ func (s *SecuritySystem) GetCurrentSwitchValues() []Pin {
 
 }
 
+//AddReceiver adds a receiver that can take actions on pin changes.
 func (s *SecuritySystem) AddReceiver(receiver IStatusReceiver) {
 
 	if receiver == nil {
@@ -67,8 +68,6 @@ func (s *SecuritySystem) BeginUpdating() {
 			//pin.Configure()
 
 			s.configuration.Pins[i].Pin = rpio.Pin(pin.GPIOPin)
-
-			fmt.Printf("Configuring pin %v...\n", s)
 
 			//Set pin as an input pin.
 			s.configuration.Pins[i].Pin.Input()
