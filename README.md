@@ -31,13 +31,13 @@ Options within this file include:
 {
   "PollingIntervalMs": 500,
   "MQTT": {
-    "Broker": "127.0.0.1”,
-    “Port”: 1883,
- },
+    "Broker": "127.0.0.1",
+    “Port”: 1883
+  },
  "Pins": [{
    "GPIOPin": 22,
    "Topic": "downstairs/frontdoor",
-   "Pull": 2,					              //
+   "Pull": 2,
    "Name": "Front Door",
    "Retain": true
  }]
@@ -48,7 +48,7 @@ You can define as many additional pins as your board supports by just adding to 
 
 ### Configuration Options
 
-*PollingIntervalMs:* The frequency with which to check for pin state changes in milliseconds.
+*PollingIntervalMs:* The frequency with which to check for pin state changes in milliseconds
 *MQTT.Broker:* The MQTT broker host name or ip.
 *MQTT.Port:* The MQTT broker listening port.
 *Pins[].GPIOPin:* The GPIO pin number to monitor (NOT the BCM pin number).
