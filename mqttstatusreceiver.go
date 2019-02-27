@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 	"time"
 
 	"github.com/yosssi/gmq/mqtt"
@@ -56,6 +57,22 @@ func (m *MqttStatusReceiver) connectToMqttBroker() {
 			fmt.Print("An error occurred while trying to connect to our MQTT server. Retrying in 10 seconds...")
 			time.Sleep(time.Millisecond * time.Duration(10000))
 		} else {
+
+			//Now that we're connected, send some required messages.
+			for _, pin := range m.configuration.Pins {
+
+				var nameTopic = m.appendTopic(pin.Topic, "name")
+				var statusTopic = m.appendTopic(pin.Topic, "status")
+				var status = "0"
+
+				if pin.Value {
+					status = "1"
+				}
+
+				m.sendMessageString(nameTopic, pin.Name, true)
+				m.sendMessageString(statusTopic, status, true)
+			}
+
 			break
 		}
 	}
@@ -64,17 +81,46 @@ func (m *MqttStatusReceiver) connectToMqttBroker() {
 //Notify prints the status change to the terminal.
 func (m *MqttStatusReceiver) Notify(pin Pin) {
 
-	message := NewMqttMessage(pin.Value, pin.Name)
+	//message := NewMqttMessage(pin.Value, pin.Name)
+	var statusTopic = m.appendTopic(pin.Topic, "status")
+	var status = "0"
+
+	if pin.Value {
+		status = "1"
+	}
+
+	//m.sendMessageBytes(pin.Topic, message.ToBytes(), pin.Retain)
+	m.sendMessageString(statusTopic, status, pin.Retain)
+
+}
+
+//Notify prints the status change to the terminal.
+func (m *MqttStatusReceiver) sendMessageString(topic string, message string, retain bool) {
+
+	m.sendMessageBytes(topic, []byte(message), retain)
+
+}
+
+func (m *MqttStatusReceiver) sendMessageBytes(topic string, message []byte, retain bool) {
 
 	err := m.mqttClient.Publish(&client.PublishOptions{
 		QoS:       mqtt.QoS0,
-		TopicName: []byte(pin.Topic),
-		Message:   message.ToBytes(),
-		Retain:    pin.Retain,
+		TopicName: []byte(topic),
+		Message:   message,
+		Retain:    retain,
 	})
 
 	if err != nil {
 		panic(err)
 	}
+}
 
+func (m *MqttStatusReceiver) appendTopic(topic string, child string) string {
+
+	var separator = "/"
+	var topics = strings.Split(topic, separator)
+
+	topics = append(topics, child)
+
+	return strings.Join(topics, separator)
 }
