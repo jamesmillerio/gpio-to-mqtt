@@ -63,6 +63,8 @@ func (m *MqttStatusReceiver) connectToMqttBroker() {
 
 				var nameTopic = m.appendTopic(pin.Topic, "name")
 				var statusTopic = m.appendTopic(pin.Topic, "status")
+				var deviceClassTopic = m.appendTopic(pin.Topic, "deviceClass")
+				var identifierTopic = m.appendTopic(pin.Topic, "identifier")
 				var status = "0"
 
 				if pin.Value {
@@ -71,6 +73,8 @@ func (m *MqttStatusReceiver) connectToMqttBroker() {
 
 				m.sendMessageString(nameTopic, pin.Name, true)
 				m.sendMessageString(statusTopic, status, true)
+				m.sendMessageString(deviceClassTopic, pin.DeviceClass, true)
+				m.sendMessageString(identifierTopic, pin.Identifier, true)
 			}
 
 			break

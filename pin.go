@@ -4,14 +4,16 @@ import "github.com/stianeikeland/go-rpio"
 
 //Pin represents a pin that is used on the Raspberry Pi for GPIO.
 type Pin struct {
-	GPIOPin int
-	Pin     rpio.Pin
-	Topic   string
-	Pull    rpio.Pull
-	Status  bool
-	Value   bool
-	Retain  bool
-	Name    string
+	GPIOPin     int
+	Pin         rpio.Pin
+	Topic       string
+	Pull        rpio.Pull
+	Status      bool
+	Value       bool
+	Retain      bool
+	Name        string
+	DeviceClass string
+	Identifier  string
 }
 
 //Configure loads the specified JSON file into the provided instance.
